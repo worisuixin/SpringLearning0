@@ -8,6 +8,7 @@
 <!--        这里这个name就是userService里面set之后的名字，这个ref就是下面使用的那个类的id，两个意思不一样-->
 <!--   DI依赖注入基本操作   同时，这里就是去注入一个类，不用去手动创建，而是在这个依赖文件里面去注入，将这个userDao对象直接注入到这个类里面-->
     </bean>
-<!--    这个class就是导入这个类的全限定名字，这个id就是唯一标识，用来使用这个类-->
+<!--    这个class就是导入这个类的全限定名字，这个id就是唯一标识，用来使用这个类, 且这个id要唯一-->
+<!--    这里这个id是作为唯一标识，但当传入到getbean时，其实这个是会转换为beanname的-->
     <bean id="userDao" class="com.itbaima.dao.impl.UserDaoImpl"></bean>
 </beans>
