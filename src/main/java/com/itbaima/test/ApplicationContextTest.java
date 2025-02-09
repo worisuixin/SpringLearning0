@@ -11,5 +11,7 @@ public class ApplicationContextTest {
         UserService userService = (UserService) context.getBean("userService");   //这里其实是会将那个id转换为这个beanname进行传递的
 //        这里就实现了几行代码实现了相同的功能，更加强大，所以用这个applicinationContext，但是底层还是BeanFactory
         System.out.println(userService);
+        Object myBeanFactory1 = context.getBean("myBeanFactory1");
+        System.out.println(myBeanFactory1);
     }
 }
