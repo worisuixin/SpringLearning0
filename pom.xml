@@ -20,6 +20,26 @@
             <artifactId>spring-context</artifactId>
             <version>5.3.7</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.24</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
+        </dependency>
+<!--        以上两个就是对非自定义的Bean进行引用的前置准备工作，之后在配置文件里面进行使用-->
+
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.5.16</version>
+        </dependency>
     </dependencies>
 
 </project>

@@ -15,6 +15,44 @@
     <bean id="userDao" class="com.itbaima.dao.impl.UserDaoImpl" lazy-init="true"></bean>
 <!--    这里设置为延迟加载之后，就不会在创建Spring容器时，立即创建Bean实例，等到用时才会去-->
 
+    <bean id="druidMysql" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/mybatis"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="123456"></property>
+    </bean>
+<!--    上面这个就是对非自定义的bean的使用。首先就是在pom文件中进行配置，导入需要使用的类。然后在bean文件中进行配置
+很像自定义的，只是说这个全限定名不一样。下面的property就是具体属性的配置-->
+
+
+<!--    这是个静态工厂方法，且其实启动的时候spring会自动实例化所有的bean(如无特殊，所以启动之后这个就已经实例化完了-->
+     <bean id="connectionDriver" class="java.lang.Class" factory-method="forName">
+         <constructor-arg name="className" value="com.mysql.jdbc.Driver"></constructor-arg>
+     </bean>
+     <bean id="connection"  class="java.sql.DriverManager" factory-method="getConnection">
+        <constructor-arg name="url" value="jdbc:mysql://localhost:3306/mybatis"></constructor-arg>
+         <constructor-arg name="user" value="root"></constructor-arg>
+         <constructor-arg name="password" value="123456"></constructor-arg>
+     </bean>
+<!-- 这个就是对Connection和驱动Driver的注入，这里他是个有参构造，所以需要指定构造方法的名字以及参数值。还有对应的全限定名-->
+
+
+<!--    静态工厂方法方式配置  写上具体的静态方法，以及与之对应的参数值-->
+     <bean id="in" class="org.apache.ibatis.io.Resources" factory-method="getResourceAsStream">
+         <constructor-arg name="resource" value="mybatis-config.xml"></constructor-arg>
+     </bean>
+<!--    无参构造实例化，没有参数，所以直接啥也不用写-->
+     <bean id="builder" class="org.apache.ibatis.session.SqlSessionFactoryBuilder"></bean>
+<!--    实例工厂方法  实例工厂就是说他会去调用某一个工厂的构造方法去生成对象，所以得先由工厂，即先由一个bean，然后去调用-->
+    <bean id="sqlSessionFactory" factory-bean="builder" factory-method="build">
+        <constructor-arg name="inputStream" ref="in"></constructor-arg>
+    </bean>
+
+
+<!--演示后处理器的使用-->
+    <bean class="com.itbaima.processor.MyBeanFactoryPostProcessor"></bean>
+
+
 
     <bean id="myBeanFactory1" class="com.itbaima.factory.MyBeanFactory1"></bean>
     <bean id="myBeanUserDao" factory-bean="myBeanFactory1" factory-method="getUserDao"></bean>
