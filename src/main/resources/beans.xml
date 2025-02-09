@@ -51,7 +51,7 @@
 
 <!--演示后处理器的使用-->
     <bean class="com.itbaima.processor.MyBeanFactoryPostProcessor"></bean>
-
+    <bean class="com.itbaima.processor.MyBeanDefinitionRegesterPostProcessor"></bean>
 
 
     <bean id="myBeanFactory1" class="com.itbaima.factory.MyBeanFactory1"></bean>
