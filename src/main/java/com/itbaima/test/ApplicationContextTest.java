@@ -1,5 +1,6 @@
 package com.itbaima.test;
 
+import com.itbaima.beans.OtherBean;
 import com.itbaima.service.UserService;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -39,6 +40,10 @@ public class ApplicationContextTest {
         SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) context.getBean("sqlSessionFactory");
         SqlSession sqlSession = sqlSessionFactory.openSession();
         System.out.println(sqlSession);
+
+//        测试自定义注解扫描开发    这个OtherBean就没有写到配置文件中，但是还是可以使用，所以就是实现了注解开发
+        Object otherBean = context.getBean(OtherBean.class);
+        System.out.println(otherBean);
 
 
     }

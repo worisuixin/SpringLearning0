@@ -54,6 +54,10 @@
     <bean class="com.itbaima.processor.MyBeanDefinitionRegesterPostProcessor"></bean>
 
 
+<!--    演示自定义注解扫描的使用，所有都有了，还是得把注册的那个类放到这里面-->
+    <bean class="com.itbaima.processor.MyComponentBeanFactoryPostPocessor"></bean>
+
+
     <bean id="myBeanFactory1" class="com.itbaima.factory.MyBeanFactory1"></bean>
     <bean id="myBeanUserDao" factory-bean="myBeanFactory1" factory-method="getUserDao"></bean>
 <!--上面这两行就是使用实例工厂方法去实例化bean。既然是实例工厂，所以得先有实例工厂，即第一行用来配置实例工厂，第二行用来使用实例工厂的方法来实例化对象-->
