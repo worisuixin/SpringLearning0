@@ -7,6 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * 自定义注解扫描示例代码
+ * 此段代码实现的是定义一个注解，来进行使用
  */
 @Target(ElementType.TYPE)  //注解使用范围：类
 @Retention(RetentionPolicy.RUNTIME)  //注解保留阶段：整个运行期间

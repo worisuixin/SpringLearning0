@@ -12,6 +12,7 @@ import java.util.Map;
 
 /**
  * 写这个类就是为了去实现直接将需要的bean直接注册到BeanMap里面，就可以直接去使用了。即依旧不用写到配置文件
+ * 演示自定义的注解开发
  */
 
 public class MyComponentBeanFactoryPostPocessor implements BeanDefinitionRegistryPostProcessor {
