@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+<!--    配置SqlSessionFactoryBean，用于将SqlSessionFactory存储到Spring容器-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="druidMysql"></property>
+    </bean>
+<!--    配置MapperScannerConfigurer,用于扫描指定的包，产生Mapper对象存储到Spring容器中-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.itbaima.mapper"></property>
+    </bean>
+<!--上面这两个配置，直接就将mybatis中的配置给囊括了，所以就不要那个文件了  此后，使用这个mapper对象，就是直接放到bean里面，然后bean配置文件写上就可以使用了-->
+
+
 
     <bean id="userService" name="service,service2" class="com.itbaima.service.impl.UserServiceImpl" init-method="init" destroy-method="destroy">
         <property name="userDao" ref="userDao"></property>    <!--DI,依赖注入-->

@@ -15,6 +15,11 @@
         </environment>
     </environments>
 
+
+    <mappers>
+        <package name="com.itbaima.mapper"/>
+    </mappers>
+
 </configuration>
 
 <!--用于演示利用xml配置文件去实例化对象的方法-->
